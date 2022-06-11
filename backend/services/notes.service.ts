@@ -24,7 +24,7 @@ class NoteService {
     return this.model.create(note);
   }
 
-  public async update(id: number, note: Note): Promise<void> {
+  public async update(id: number, note: Note): Promise<Note> {
     const noteFound = await this.model.getById(id);
     if (!noteFound) {
       throw new NotFoundError('NotFoundError');

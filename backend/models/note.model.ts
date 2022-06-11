@@ -36,10 +36,12 @@ export default class NoteModel {
 
   public async update(id: number, notes: Note) {
     const { note, collor } = notes;
-    await this.connection.execute(
+    const result = await this.connection.execute(
       'UPDATE notes SET note=?, collor=? WHERE id=?',
       [note, collor, id]
     );
+    const [dataInserted] = result;
+    return { id, ...notes };
   }
 
   public async remove(id: number) {

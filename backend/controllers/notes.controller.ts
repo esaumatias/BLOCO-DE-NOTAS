@@ -32,9 +32,9 @@ class NotesController {
   public update = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
     const note = req.body;
-    await this.noteService.update(id, note);
+    const noteUpdate = await this.noteService.update(id, note);
 
-    res.status(StatusCodes.NO_CONTENT).end();
+    res.status(StatusCodes.CREATED).json(noteUpdate);
   };
 
   public remove = async (req: Request, res: Response) => {
