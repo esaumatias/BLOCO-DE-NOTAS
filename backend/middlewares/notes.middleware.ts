@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import Note from '../interfaces/note.interface';
 
-const properties = ['note'];
+const properties = ['note', 'collor'];
 
 function validateProperties(note: Note): [boolean, string | null] {
   for (let i = 0; i < properties.length; i += 1) {

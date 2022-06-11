@@ -2,10 +2,12 @@ import express, { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import 'express-async-errors';
 import NotesRoutes from './routes/notes.routes';
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const PORT = 8000;
 

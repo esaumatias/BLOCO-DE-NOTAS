@@ -24,10 +24,10 @@ export default class NoteModel {
   }
 
   public async create(notes: Note): Promise<Note> {
-    const { note } = notes;
+    const { note, collor } = notes;
     const result = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO notes (note) VALUES (?)',
-      [note],
+      'INSERT INTO notes (note, collor) VALUES (?, ?)',
+      [note, collor],
     );
     const [dataInserted] = result;
     const { insertId } = dataInserted;
@@ -35,10 +35,10 @@ export default class NoteModel {
   }
 
   public async update(id: number, notes: Note) {
-    const { note } = notes;
+    const { note, collor } = notes;
     await this.connection.execute(
-      'UPDATE notes SET note=? WHERE id=?',
-      [note, id]
+      'UPDATE notes SET note=?, collor=? WHERE id=?',
+      [note, collor, id]
     );
   }
 
