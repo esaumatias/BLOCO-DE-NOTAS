@@ -8,6 +8,7 @@ function AppProvider({ children }) {
     text: '',
     collor: 'primary'
   });
+  const [idCard, setIdCard] = useState({});
 
   return (
     <AppContext.Provider
@@ -17,7 +18,9 @@ function AppProvider({ children }) {
         addSubmitted,
         setAddSubmitted,
         nota,
-        setNota
+        setNota,
+        idCard,
+        setIdCard
       }}
     >
       { children }

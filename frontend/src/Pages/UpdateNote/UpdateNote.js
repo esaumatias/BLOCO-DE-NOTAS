@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { create } from '../../Services/FetchApi';
+import { update } from '../../Services/FetchApi';
 import { Container, Form, Row, Col, Button, Modal } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 
@@ -17,11 +17,11 @@ function MyVerticallyCenteredModal(props) {
       {addSubmitted ? (
         <><Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Nota criada
+            Nota modificada
           </Modal.Title>
         </Modal.Header><Modal.Body>
             <p>
-              Nota criada com sucesso!
+              Nota modificada com sucesso!
             </p>
           </Modal.Body></>
       ) : (
@@ -41,8 +41,8 @@ function MyVerticallyCenteredModal(props) {
 }
 
 
-function AddNote() {
-  const { setAddSubmitted, nota, setNota } = useContext(AppContext);
+function UpdateNota() {
+  const { setAddSubmitted, nota, setNota, idCard } = useContext(AppContext);
   const [modalShow, setModalShow] = useState(false);
 
   function handleNota({target}) {
@@ -53,7 +53,7 @@ function AddNote() {
   }
 
   function submitInfos() {
-    create(nota).then((data) => {
+    update(idCard, nota).then((data) => {
       if(data.statusCode === 400) {
         setAddSubmitted(false);
       } else {
@@ -68,7 +68,7 @@ function AddNote() {
   return (
     <Container>
       <div style={{ display: 'flex', justifyContent: "space-between", marginTop: "40px", marginBottom: "20px"}}>
-          <h1>Adicionar Notas</h1>
+          <h1>Editar Notas</h1>
           <Link to="/">
             <Button variant="dark">
               Voltar
@@ -105,4 +105,4 @@ function AddNote() {
   );
 };
 
-export default AddNote;
+export default UpdateNota;
