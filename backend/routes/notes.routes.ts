@@ -10,5 +10,6 @@ router.get('/notas', notesController.getAll);
 router.get('/notas/:id', notesController.getById);
 router.post('/notas', validationNote, notesController.create);
 router.put('/notas/:id', validationNote, notesController.update);
+router.delete('/notas/:id', notesController.remove);
 
 export default router;

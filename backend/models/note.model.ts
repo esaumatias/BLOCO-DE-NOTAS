@@ -41,4 +41,11 @@ export default class NoteModel {
       [note, id]
     );
   }
+
+  public async remove(id: number) {
+    await this.connection.execute(
+      'DELETE FROM notes WHERE id=?',
+      [id],
+    );
+  }
 }

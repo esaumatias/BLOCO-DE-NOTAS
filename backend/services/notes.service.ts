@@ -32,6 +32,15 @@ class NoteService {
 
     return this.model.update(id, note);
   }
+
+  public async remove(id: number): Promise<void> {
+    const noteFound = await this.model.getById(id);
+    if (!noteFound) {
+      throw new NotFoundError('NotFoundError');
+    }
+
+    this.model.remove(id);
+  }
 }
 
 export default NoteService;

@@ -36,6 +36,13 @@ class NotesController {
 
     res.status(StatusCodes.NO_CONTENT).end();
   };
+
+  public remove = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    await this.noteService.remove(id);
+
+    res.status(StatusCodes.OK).json({ message: 'Note deleted successfully' });
+  };
 }
 
 export default NotesController;
