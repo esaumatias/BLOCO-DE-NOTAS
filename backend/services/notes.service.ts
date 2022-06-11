@@ -18,6 +18,10 @@ class NoteService {
     const note = await this.model.getById(id);
     return note;
   }
+
+  public create(note: Note): Promise<Note> {
+    return this.model.create(note);
+  }
 }
 
 export default NoteService;

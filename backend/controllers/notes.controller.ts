@@ -21,6 +21,13 @@ class NotesController {
 
     res.status(StatusCodes.OK).json(note);
   }
+
+  public create = async (req: Request, res: Response) => {
+    const note = req.body;
+
+    const noteCreated = await this.noteService.create(note);
+    res.status(StatusCodes.CREATED).json(noteCreated);
+  };
 }
 
 export default NotesController;
