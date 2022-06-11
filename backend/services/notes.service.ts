@@ -13,6 +13,11 @@ class NoteService {
     const notes = await this.model.getAll();
     return notes;
   }
+
+  public async getById(id: number): Promise<Note> {
+    const note = await this.model.getById(id);
+    return note;
+  }
 }
 
 export default NoteService;

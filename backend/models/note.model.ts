@@ -15,6 +15,14 @@ export default class NoteModel {
     return rows as Note[];
   }
 
+  public async getById(id: number): Promise<Note> {
+    const result = await this.connection
+      .execute('SELECT * FROM notes WHERE id=?', [id]);
+    const [rows] = result;
+    const [note] = rows as Note[];
+    return note;
+  }
+
   public async create(notes: Note): Promise<Note> {
     const { note } = notes;
     const result = await this.connection.execute<ResultSetHeader>(
