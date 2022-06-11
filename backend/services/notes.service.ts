@@ -1,6 +1,7 @@
 import connection from '../models/connection';
 import NoteModel from '../models/note.model';
 import Note from '../interfaces/note.interface';
+import { NotFoundError } from 'restify-errors';
 
 class NoteService {
   public model: NoteModel;
@@ -21,6 +22,15 @@ class NoteService {
 
   public create(note: Note): Promise<Note> {
     return this.model.create(note);
+  }
+
+  public async update(id: number, note: Note): Promise<void> {
+    const noteFound = await this.model.getById(id);
+    if (!noteFound) {
+      throw new NotFoundError('NotFoundError');
+    }
+
+    return this.model.update(id, note);
   }
 }
 

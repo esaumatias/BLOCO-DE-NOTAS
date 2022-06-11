@@ -26,11 +26,19 @@ export default class NoteModel {
   public async create(notes: Note): Promise<Note> {
     const { note } = notes;
     const result = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO books (note) VALUES (?)',
+      'INSERT INTO notes (note) VALUES (?)',
       [note],
     );
     const [dataInserted] = result;
     const { insertId } = dataInserted;
     return { id: insertId, ...notes };
+  }
+
+  public async update(id: number, notes: Note) {
+    const { note } = notes;
+    await this.connection.execute(
+      'UPDATE notes SET note=? WHERE id=?',
+      [note, id]
+    );
   }
 }
