@@ -5,7 +5,8 @@ export const create = async (nota) => {
       method: "POST",
       headers: { "Content-type": "application/json; charset=UTF-8" },
       body: JSON.stringify({
-        note: nota,
+        note: nota.text,
+        collor: nota.collor,
       }),
     });
     const responseJSON = await response.json();

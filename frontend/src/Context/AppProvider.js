@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
-  const [nota, setNota,] = useState([]);
   const [allNotes, setAllNotes] = useState({});
+  const [addSubmitted, setAddSubmitted] = useState(false);
+  const [nota, setNota] = useState({
+    text: '',
+    collor: 'primary'
+  });
 
   return (
     <AppContext.Provider
       value={{
-        nota,
-        setNota,
         allNotes,
-        setAllNotes
+        setAllNotes,
+        addSubmitted,
+        setAddSubmitted,
+        nota,
+        setNota
       }}
     >
       { children }
