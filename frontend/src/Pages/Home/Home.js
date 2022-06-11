@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import { create, getList } from '../../Services/FetchApi';
 import AppContext from '../../Context/AppContext';
+import CardNotes from '../../Components/CardsNotes/CardsNotes';
 
 function Home() {
-  const { setNota, nota } = useContext(AppContext);
-  const [allNotes, setAllNotes] = useState({});
+  const { setNota, nota, setAllNotes } = useContext(AppContext);
 
   useEffect(() => {
      getList().then((data) => {
@@ -13,7 +13,7 @@ function Home() {
         setAllNotes(data);
        }
      });
-   }, [])
+   }, [setAllNotes])
 
   function handleNota({target}) {
     const { value } = target;
@@ -22,7 +22,11 @@ function Home() {
 
   function submitInfos() {
     create(nota).then((data) => {
-      console.log(data);
+      getList().then((data) => {
+        if(data.statusCode !== 400) {
+         setAllNotes(data);
+        }
+      });
     })
   }
   
@@ -40,6 +44,7 @@ function Home() {
           Salvar
         </Button>
       </Form>
+      <CardNotes />
     </Container>
   )
 }
