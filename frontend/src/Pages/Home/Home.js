@@ -23,7 +23,7 @@ function Home() {
           <h1>Minhas Notas</h1>
           <Link to="/Adicionar">
             <Button variant="dark">
-              Adicionar Naver
+              Adicionar Nota
             </Button>
           </Link>
         </div>
